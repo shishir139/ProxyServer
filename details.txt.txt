@@ -1,0 +1,22 @@
+Client Class:
+
+The role of this class is to interact with user and get the details from the user. This class is simple in terms of methods and process. It takes IP address and port number to get connected to Proxy Server. Once connection is established it prompts user for Username. Username is send to proxy server (via established TCP connection) and server sends acknowledgement for username. The same process repeats for the password. Once both are received by the server if pair is legitimate then client receives a log in message.
+
+Upon successful log in client asks user to provide details for the server i.e. server name, so that relay server can establish connection with that receiver. 
+
+After getting server details client prompts for two strings for which length of common sub string is to be calculated.
+
+Proxy Server / Relay Server:
+
+This class acts as application layer. All the authentication and IP address resolution for receiver server are processed in this class. This class uses encapsulation to hide actual details from a developers view. It implements one more class named 'ServerConnection' where all the processing is done (matching credentials & IP address resolution).
+-ServerConnection has two methods. One is for checking legitimate pairs of username and password. In this method it utilized Scanner class for reading lines from a text file and checking them against user provided details. If the details match method will return true and this message will be transmitted to Client. Second method is for resolution of IP address and port number upon providing server name. In my program I have provided only port number as I am using localhost in the place of Ip address. It can be done for IP address by changing few lines.
+
+Once address resolution is done ServerConncection class will try to connect to address (taken from server). If the connection is established Proxy server will act as a message between client and receiver.
+
+It reads messages from client displays those messages and forwards them to receiver and vice versa for receiver to client.
+
+TCP Server/Receiver Class:
+
+This class upon connecting with proxy server gets connected with client. Client sends some string to receiver, receiver calculates length of common sub string and sends it to client via proxy server.
+
+This class also implements algorithm for finding length of common sub string.
