@@ -1,0 +1,2 @@
+# ProxyServer
+interact with user and get the details from the user. This class is simple in terms of methods and process. It takes IP address and port number to get connected to Proxy Server. Once connection is established it prompts user for Username. Username is send to proxy server (via established TCP connection) and server sends acknowledgement for username. The same process repeats for the password. Once both are received by the server if pair is legitimate then client receives a log in message.
